@@ -3,7 +3,6 @@ import java.net.*;
  
 /**
  * This thread is responsible for reading server's input and printing it to the console.
- * It runs in an infinite loop until the client disconnects from the server.
  */
 public class ReadThread extends Thread {
     private BufferedReader reader;
@@ -34,6 +33,7 @@ public class ReadThread extends Thread {
                 }
             } catch (IOException ex) {
                 System.out.println("<- System ->[You have quited]");
+                System.exit(0);
                 break;
             }
         }

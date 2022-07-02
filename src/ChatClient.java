@@ -25,8 +25,10 @@ public class ChatClient {
             new WriteThread(socket, this).start();
         } catch (UnknownHostException ex) {
             System.out.println("Server not found: " + ex.getMessage());
+            System.exit(0);
         } catch (IOException ex) {
             System.out.println("I/O Error: " + ex.getMessage());
+            System.exit(0);
         }
     }
 
@@ -35,10 +37,6 @@ public class ChatClient {
     }
 
     String getUserName() {
-        return this.userName;
-    }
-
-    String getChannel() {
         return this.userName;
     }
 

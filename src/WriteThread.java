@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
  
 /**
- * read user input
+ * This thread is responsible for reading console's input and request to the server.
  */
 public class WriteThread extends Thread {
     private PrintWriter writer;
@@ -31,16 +31,20 @@ public class WriteThread extends Thread {
         writer.println(userName);
  
         String text;
- 
+        String tmp[];
         do {
             text = console.readLine("[" + userName + "]: ");
             writer.println(text);
+            tmp = text.split(" ");
+            if(tmp[0].toLowerCase().equals("$change"))
+                System.out.println("<- System ->[change to " + tmp[1] +"]");
         } while (!text.toLowerCase().equals("$bye"));
  
         try {
             socket.close();
         } catch (IOException ex) {
             System.out.println("<- System ->[You have quitted]");
+            System.exit(0);
         }
     }
 }

@@ -41,13 +41,18 @@ public class UserThread extends Thread {
                 clientMessage = reader.readLine();
                 serverMessage = "[" + userName + "]: " + clientMessage;
                 tmp = clientMessage.split(" ");
-                if(tmp[0].toLowerCase().equals("$change"))
+                if(tmp[0].toLowerCase().equals("$change")) {
+                    server.broadcast("<- System ->[" + userName + " left]", this);
                     this.setChannel(tmp[1]);
+                    server.broadcast("<- System ->[" + userName + " entered "+ tmp[1] +"]", this);
+                }
+                else if (clientMessage.toLowerCase().equals("$bye")) {
+                    break;
+                }
                 else {
                     server.broadcast(serverMessage, this);
                 }
-
-            } while (!clientMessage.equals("$bye"));
+            } while (true);
 
             server.removeUser(userName, this);
             socket.close();

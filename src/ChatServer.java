@@ -47,9 +47,8 @@ public class ChatServer {
         server.execute();
     }
 
-    /**
-     * Delivers a message from one user to others (broadcasting)
-     */
+    
+    // Delivers a message from one user to others (broadcasting)
     void broadcast(String message, UserThread excludeUser) {
         for (UserThread aUser : userThreads) {
             if (aUser != excludeUser && aUser.getChannel().equals(excludeUser.getChannel())) {
